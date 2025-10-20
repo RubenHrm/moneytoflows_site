@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"></head>
+<body class="py-4">
+  <div class="container">
+    <h3>Admin - Gestion</h3>
+    <h4>Utilisateurs</h4>
+    <table class="table table-sm"><thead><tr><th>ID</th><th>Username</th><th>Ref Code</th><th>Purchases</th></tr></thead><tbody>
+    {% for u in users %}
+      <tr><td>{{ u['id'] }}</td><td>{{ u['username'] }}</td><td>{{ u['ref_code'] }}</td><td>{{ u['purchases'] }}</td></tr>
+    {% endfor %}
+    </tbody></table>
+    <h4>Achats en attente</h4>
+    <table class="table table-sm"><thead><tr><th>ID</th><th>User</th><th>Reference</th><th>Action</th></tr></thead><tbody>
+    {% for p in pending %}
+      <tr>
+        <td>{{ p['id'] }}</td><td>{{ p['username'] }}</td><td>{{ p['reference'] }}</td>
+        <td>
+          <form method="post" action="{{ url_for('validate_purchase', purchase_id=p['id']) }}" style="display:inline">
+            <button class="btn btn-success btn-sm">Valider</button>
+          </form>
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody></table>
+    <h4>Retraits</h4>
+    <table class="table table-sm"><thead><tr><th>ID</th><th>User</th><th>Fournisseur</th><th>Numéro</th><th>Action</th></tr></thead><tbody>
+    {% for w in withdrawals %}
+      <tr>
+        <td>{{ w['id'] }}</td><td>{{ w['username'] }}</td><td>{{ w['provider'] }}</td><td>{{ w['mobile_number'] }}</td>
+        <td>
+          <form method="post" action="{{ url_for('validate_withdraw', wid=w['id']) }}" style="display:inline">
+            <button class="btn btn-success btn-sm">Valider</button>
+          </form>
+          <form method="post" action="{{ url_for('refuse_withdraw', wid=w['id']) }}" style="display:inline">
+            <button class="btn btn-danger btn-sm">Refuser</button>
+          </form>
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody></table>
+  </div>
+</body>
+</html>

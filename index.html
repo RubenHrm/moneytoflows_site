@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{{ product }}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="py-4">
+  <div class="container">
+    <h1>{{ product }}</h1>
+    <p>Gagnez de l'argent en partageant notre formation. Inscrivez-vous et obtenez un lien de parrainage unique.</p>
+    <a href="{{ url_for('register') }}" class="btn btn-primary">S'inscrire</a>
+    <a href="{{ achat_link }}" class="btn btn-success">Acheter maintenant</a>
+    <p class="mt-4">Ou <a href="{{ url_for('login') }}">connectez-vous</a> si vous avez déjà un compte.</p>
+  </div>
+</body>
+</html>
